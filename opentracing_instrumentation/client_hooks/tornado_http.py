@@ -151,6 +151,11 @@ class TornadoRequestWrapper(AbstractRequestWrapper):
         self.request.headers[key] = value
 
     @property
+    def operation(self):
+        name = super(TornadoRequestWrapper, self).operation
+        return 'tornado:{}'.format(name)
+
+    @property
     def _headers(self):
         if self._norm_headers is None:
             if type(self.request.headers) is HTTPHeaders:

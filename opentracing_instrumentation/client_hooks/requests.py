@@ -98,6 +98,11 @@ class RequestsPatcher(Patcher):
             self.request.headers[key] = value
 
         @property
+        def operation(self):
+            name = super(RequestsPatcher.RequestWrapper, self).operation
+            return 'requests:{}'.format(name)
+
+        @property
         def method(self):
             return self.request.method
 

@@ -73,6 +73,11 @@ def install_patches():
             self.request.add_header(key, value)
 
         @property
+        def operation(self):
+            name = super(Urllib2RequestWrapper, self).operation
+            return 'urllib2:{}'.format(name)
+
+        @property
         def method(self):
             return self.request.get_method()
 
